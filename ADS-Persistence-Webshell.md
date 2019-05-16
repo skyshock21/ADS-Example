@@ -40,29 +40,15 @@ The priority is set to high under the following conditions:
 Validation can occur for this ADS by creating or modifying a file within the web server directory structure.
 This validation scenario should trigger a detection event by the file integrity monitoring system.
 
-
-
-
-
-
-
-
-
-
-
 # Response
 In the event that this alert fires, the following response procedures are recommended:
-* Identify the BCD properties that were modified.
-* If only Flight Signing were modified, it is likely the user enrolled in WIP.
-  * Check the current build of their machine and compare against public WIP builds.
-  * If this is a true positive, work with the user to roll back to a stable build.
-* If integrity checks or test signing are modified, treat as a high priority alert.
-  * Investigation any processes which have executed since the last reboot. 
-  * Identify any new loaded kernel modules or drivers.
-  * If the user is unaware of this behavior, escalate to a security incident
-* If debugging settings are modified, treat as a high priority alert.
-  * Identify if any debuggers were used by the user. 
-  * If the user is unaware of this behavior, escalate to a security incident.
+* Identify the file(s) that were modified.
+* Validate the user/group responsible for the change
+  * If not a true positive, verify file integrity monitoring system is running.
+  * If it is a true positive, escalate to incident response.
+* If file integrity checks were bypassed, treat as a high priority alert. 
+  * Investigate and record any processes which have executed since the last reboot.
+  * If the system owner is unaware of this behavior, escalate to incident response.
 
 # Additional Resources
 * [Compromised Web Servers and Web Shells - Threat Awareness and Guidance](https://www.us-cert.gov/ncas/alerts/TA15-314A)
