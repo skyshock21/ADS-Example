@@ -10,6 +10,7 @@ The strategy will function as follows:
 * Develop a regular change management policy for asset owner's web servers. 
 * Compare changes to servable content using a file integrity system via endpoint tooling.
 * Alert on any discrepancies between desired and current states.
+* Alert on anomalous process activity detection  
 
 # Technical Context
 A web shell is a server-side compromise allowing an adversary to establish a persistent connection to a computer network.  A web shell can be written in any web-based scripting language, with the most common being .asp, .aspx, .js, .jsp, .pl, .rb, .py, .sh, or .php.  They can be written as complex stand-alone files, or a simple line of code injected into an existing web page. 
@@ -35,6 +36,9 @@ There are very limited instances where false positives will occur:
 # Priority
 The priority is set to high under the following conditions:
 * File system integrity tooling reports an unauthorized change in file system's web directories.
+* Anomalous process activity is detected
+  * Web servers accessing files not in the web directory.
+  * Web servers running/spawning suspicious commands such as CMD or Powershell.
 
 # Validation
 Validation can occur for this ADS by creating or modifying a file within the web server directory structure.
